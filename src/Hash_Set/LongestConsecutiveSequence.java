@@ -1,4 +1,4 @@
-package Hash_Set;
+package HashSet;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -13,26 +13,26 @@ public class LongestConsecutiveSequence
             set.add(num);
         }
 
-        int longest = 0;
+        int maxLength = 0;
 
-        for(int num : set)
+        for(int num : nums)
         {
-            int current = num;
-            int count = 1;
-
-            while(set.contains(current + 1))
+            if(!set.contains(num - 1))
             {
-                current++;
-                count++;
-            }
+                int currentNum = num;
+                int length = 1;
 
-            if(count > longest)
-            {
-                longest = count;
+                while(set.contains(currentNum + 1))
+                {
+                    currentNum++;
+                    length++;
+                }
+
+                maxLength = Math.max(maxLength, length);
             }
         }
 
-        return longest;
+        return maxLength;
     }
 
     public static void main(String[] args)
@@ -51,10 +51,9 @@ public class LongestConsecutiveSequence
             nums[i] = sc.nextInt();
         }
 
-        LongestConsecutiveSequence obj =
-                new LongestConsecutiveSequence();
+        LongestConsecutiveSequence obj = new LongestConsecutiveSequence();
 
-        System.out.println("Longest Consecutive Length: "
-                + obj.longestConsecutive(nums));
+        System.out.println("Longest Consecutive Length: " +
+                obj.longestConsecutive(nums));
     }
 }
