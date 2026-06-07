@@ -1,0 +1,45 @@
+package Stack;
+import java.util.Scanner;
+import java.util.Stack;
+public class RemoveAdjacentDuplicates
+{
+    public String removeDuplicates(String s)
+    {
+        Stack<Character> stack = new Stack<>();
+
+        for(char ch : s.toCharArray())
+        {
+            if(!stack.isEmpty() && stack.peek() == ch)
+            {
+                stack.pop();
+            }
+            else
+            {
+                stack.push(ch);
+            }
+        }
+
+        StringBuilder result = new StringBuilder();
+
+        for(char ch : stack)
+        {
+            result.append(ch);
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String s = sc.nextLine();
+
+        RemoveAdjacentDuplicates obj =
+                new RemoveAdjacentDuplicates();
+
+        System.out.println("Result: " +
+                obj.removeDuplicates(s));
+    }
+}
